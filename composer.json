@@ -1,0 +1,18 @@
+{
+  "name": "ern/13_project-cms",
+  "description": "cms",
+  "authors": [
+    {
+      "name": "Ernestas-wq",
+      "email": "54524989+Ernestas-wq@users.noreply.github.com"
+    }
+  ],
+  "require": {
+    "doctrine/orm": "^2.8"
+  },
+  "autoload": {
+    "files": [
+      "src/models/Page.php"
+    ]
+  }
+}

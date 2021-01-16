@@ -1,0 +1,10 @@
+{
+  "ern": {
+    "password": "zefyras",
+    "admin": true
+  },
+  "test1": {
+    "password": "123",
+    "admin": false
+  }
+}

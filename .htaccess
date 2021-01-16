@@ -1,0 +1,17 @@
+RewriteEngine on
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+RewriteCond %{SCRIPT_FILENAME} !-l
+RewriteRule ^(.*)$ index.php/$1 [QSA,L]
+
+
+#[www/.htaccess] when user is redirected transparently to PHPComposerDoctrine/ app
+#... local .htaccess is not needed and needs to be disabled
+#... this has the benefit of completelly isolating the applicaiton so we can't access the /views directly
+#RewriteEngine OFF
+#<IfModule mod_rewrite.c>
+#RewriteEngine on
+#RewriteCond %{ENV:REDIRECT_STATUS} ^$
+#RewriteRule ^(.*)$ PHPComposerDoctrine/index.php/$1 [L]
+#</IfModule>
+
