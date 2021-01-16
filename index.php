@@ -41,7 +41,12 @@ if($redirect_to === "login" || $redirect_to === "logout" || $redirect_to === "")
 elseif($redirect_to === "admin") {
     require __DIR__ . '/src/views/admin/index.php';
 }
-
+elseif($redirect_to === "new") {
+    require __DIR__ . '/src/views/admin/new.php';
+}
+elseif($redirect_to === "edit") {
+    require __DIR__ . '/src/views/admin/edit.php';
+}
 else {
     for($i = 0; $i < count($views); $i++) {
         if($redirect_to === $views[$i]) {
