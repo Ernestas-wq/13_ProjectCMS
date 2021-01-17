@@ -2,7 +2,7 @@
 session_start();
 require 'src/views/partials/head.php';
 require 'src/views/partials/navbar.php';
-// require 'src/models/Page.php';
+
 
 if ($_SESSION['logged_in'] && $_SESSION['admin']) {
     echo '<h1 class="display-5 mb-3">Manage pages </h1>';
@@ -16,6 +16,7 @@ if ($_SESSION['logged_in'] && $_SESSION['admin']) {
             $page->setContents($contents);
             $entityManager->persist($page);
             $entityManager->flush();
+            Header('Location: admin');
             echo '<h3 class="display-6 mt-4 text-success">Page ' . $title . ' added successfully</h3>';
         } else {
             echo '<h3 class="display-6 mt-4 text-danger">
@@ -23,6 +24,21 @@ if ($_SESSION['logged_in'] && $_SESSION['admin']) {
         </h3>';
         }
     }
+    if(isset($_POST['edit'])) {
+            $new_title = $_POST['title'];
+            $old_title = $_POST['old_title'];
+            $contents = $_POST['contents'];
+            $page = $entityManager->find('Page', $_POST['id']);
+            if($new_title !== $old_title) {
+                Helper::delete_view($views_dir, $old_title);
+            }
+            $page->setTitle($new_title);
+            $page->setContents($contents);
+            $entityManager->flush();
+            Header('Location: admin');
+    }
+
+
 
     echo '<table class="table table-bordered table-hover">
 <thead class="thead-dark">
@@ -52,7 +68,7 @@ if ($_SESSION['logged_in'] && $_SESSION['admin']) {
          <td> <button class="btn btn-danger">Delete </button> </td>
          <td><form action="edit" method="POST">
          <input type="hidden" name="id" value="'.$id.'">
-         <button type="submit" class="btn btn-info">Edit</a>
+         <button type="submit" class="btn btn-success">Edit</a>
          </form></td>
         </tr>';
             }
@@ -63,7 +79,7 @@ if ($_SESSION['logged_in'] && $_SESSION['admin']) {
     }
     echo '</thead></table>';
 
-    echo '<a class="btn btn-success" href="new">Add Page</a>';
+    echo '<a class="btn btn-info" href="new">Add Page</a>';
 } else {
     '<h3 class="display-6 mt-4 text-secondary text-center">
         Not logged in or unauthorized user

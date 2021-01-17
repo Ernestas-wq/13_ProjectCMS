@@ -3,7 +3,8 @@
 include_once 'bootstrap.php';
 require 'src/helpers/Helper.php';
 require 'src/models/Page.php';
-
+$sep = DIRECTORY_SEPARATOR;
+$views_dir = getcwd() . $sep . 'src' . $sep  . 'views' . $sep;
 $boilerplate = file_get_contents('src/views/partials/boilerplate.txt', true);
 
 $pages = $entityManager->getRepository('Page')->findAll();

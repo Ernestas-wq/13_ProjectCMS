@@ -20,6 +20,9 @@ class Helper {
         return explode('.', $x[count($x) - 1])[0];
 
     }
-
+    public static function delete_view(string $path, string $title) :void{
+        $ext = '.php';
+        unlink($path . $title . $ext);
+    }
 
 }
