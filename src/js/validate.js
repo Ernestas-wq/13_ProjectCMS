@@ -9,7 +9,7 @@
       'submit',
       function (event) {
         inputs.forEach(input => {
-          const value = input.trim();
+          const value = input.value.trim();
           if (!value) {
             console.log('no input');
             event.preventDefault();
