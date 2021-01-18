@@ -4,6 +4,7 @@ require 'partials/head.php';
 require 'partials/navbar.php';
 
 if (isset($_GET['p'])) {
+    // Representation boilerplate
     $page = $entityManager->find('Page', $_GET['p']);
 
     if ($_SESSION['logged_in']) {

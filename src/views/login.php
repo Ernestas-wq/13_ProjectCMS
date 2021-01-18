@@ -1,11 +1,7 @@
 <?php
 session_start();
-$str = file_get_contents('users.json');
-$users = json_decode($str, true);
-
-
-
-
+require 'partials/head.php';
+require 'partials/navbar.php';
 
 if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['login']) && !empty($_POST['username'] &&
     !empty($_POST['password']))) {
@@ -19,23 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['login']) && !empty($_
             $_SESSION['timeout'] = time();
             $_SESSION['username'] = $username;
             $_SESSION['admin'] = $user[0]->getIsAdmin();
-
+            Header('Location: login');
             }
-
-
+        }
+        else {
+            echo '<h3 class="display-6 mt-4 text-danger text-center">Invalid username or password</h3>';
         }
 
-
-
-//     foreach ($users as $user => $v) {
-//         if ($_POST['username'] === $user && $_POST['password'] === $v['password']) {
-//             $_SESSION['logged_in'] = true;
-//             $_SESSION['timeout'] = time();
-//             $_SESSION['username'] = $user;
-//             $_SESSION['admin'] = $v['admin'];
-
-//         }
-//     }
 }
 
 if ($redirect_to === "logout") {
@@ -43,11 +29,9 @@ if ($redirect_to === "logout") {
     unset($_SESSION['password']);
     unset($_SESSION['logged_in']);
     unset($_SESSION['admin']);
+    Header('Location: login');
 
 }
-require 'partials/head.php';
-require 'partials/navbar.php';
-
 
 
 

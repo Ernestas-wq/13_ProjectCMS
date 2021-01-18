@@ -43,8 +43,4 @@ class User
         return $this->is_admin;
     }
 
-
-
-
-
 }

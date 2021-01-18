@@ -5,8 +5,9 @@ require 'src/views/partials/navbar.php';
 require 'src/views/partials/delete_modal.php';
 if ($_SESSION['logged_in'] && $_SESSION['admin']) {
     echo '<h1 class="display-5 mb-3">Manage pages </h1>';
-
+    // Create
     if (isset($_POST['new'])) {
+        // Not allowing empty values
         $title = trim($_POST['title']);
         $contents = trim($_POST['contents']);
 
@@ -23,6 +24,7 @@ if ($_SESSION['logged_in'] && $_SESSION['admin']) {
         </h3>';
         }
     }
+    // Update
     if (isset($_POST['edit'])) {
         $title = trim($_POST['title']);
         $contents = trim($_POST['contents']);
@@ -44,6 +46,7 @@ if ($_SESSION['logged_in'] && $_SESSION['admin']) {
     if (isset($_POST['request_delete'])) {
         display_delete_modal($_POST['title'], $_POST['id']);
     }
+    // Delete
     if (isset($_POST['confirm_delete'])) {
         $page = $entityManager->find('Page', $_POST['id']);
         $entityManager->remove($page);
@@ -60,8 +63,7 @@ if ($_SESSION['logged_in'] && $_SESSION['admin']) {
         <th scope="col">Edit</th>
          </tr>';
 
-    $pages = $entityManager->getRepository('Page')->findAll();
-
+    // Representing pages
     if ($pages) {
         echo '<tbody>';
 

@@ -3,19 +3,14 @@
 include_once 'bootstrap.php';
 require 'src/helpers/Helper.php';
 
-function startsWith(string $string,string $startString)
-{
-    $len = strlen($startString);
-    return (substr($string, 0, $len) === $startString);
-}
-
-
+// Getting all pages
 $pages = $entityManager->getRepository('Page')->findAll();
+
+// Routing
 $request = $_SERVER['REQUEST_URI'];
-$redirect_to = Helper::get_path($request);
+$redirect_to = Helper::getPath($request);
 
-
-if (startsWith($redirect_to, 'page')) {
+if (Helper::startsWith($redirect_to, 'page')) {
     require __DIR__ . '/src/views/index.php';
     return;
 }
