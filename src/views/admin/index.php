@@ -9,7 +9,7 @@ if ($_SESSION['logged_in'] && $_SESSION['admin']) {
     if (isset($_POST['new'])) {
         $title = trim($_POST['title']);
         $contents = trim($_POST['contents']);
-        if($title === 'index' || $title === '404') return;
+
         if ($title && $contents) {
             $page = new Page();
             $page->setTitle($title);
@@ -24,40 +24,33 @@ if ($_SESSION['logged_in'] && $_SESSION['admin']) {
         }
     }
     if (isset($_POST['edit'])) {
-        $new_title = trim($_POST['title']);
-        $old_title = trim($_POST['old_title']);
+        $title = trim($_POST['title']);
         $contents = trim($_POST['contents']);
-        $page = $entityManager->find('Page', $_POST['id']);
-        if ($new_title === 'index' || $new_title === '404') return;
-
-        if ($new_title && $contents) {
-            if ($new_title !== $old_title) {
-                Helper::delete_view($views_dir, $old_title);
-            }
-            $page->setTitle($new_title);
+            if($title && $contents) {
+             $page = $entityManager->find('Page', $_POST['id']);
+            $page->setTitle($title);
             $page->setContents($contents);
             $entityManager->flush();
             Header('Location: admin');
-
-        } else {
+            }
+             else {
             echo '<h3 class="display-6 mt-4 text-danger">
         Please enter both values
         </h3>';
         }
+
     }
 
-    if(isset($_POST['request_delete'])) {
+    if (isset($_POST['request_delete'])) {
         display_delete_modal($_POST['title'], $_POST['id']);
     }
-    if(isset($_POST['confirm_delete'])) {
-        Helper::delete_view($views_dir, $_POST['title']);
+    if (isset($_POST['confirm_delete'])) {
         $page = $entityManager->find('Page', $_POST['id']);
         $entityManager->remove($page);
         $entityManager->flush();
         Header('Location: admin');
 
     }
-
 
     echo '<table class="table table-bordered table-hover">
         <thead class="thead-dark">
@@ -88,8 +81,8 @@ if ($_SESSION['logged_in'] && $_SESSION['admin']) {
                 echo ' <tr>
         <th scope="row"><p style="font-size: 22px"> ' . $title . '</p> </th>
          <td><form action="admin" method="POST">
-         <input type="hidden" name="id" value="'.$id.'">
-         <input type="hidden" name="title" value='.$title.'>
+         <input type="hidden" name="id" value="' . $id . '">
+         <input type="hidden" name="title" value=' . $title . '>
          <input type="hidden" name="request_delete" value="y">
          <button type="submit" class="btn btn-danger">Delete</button>
          </form></td>

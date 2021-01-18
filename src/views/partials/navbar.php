@@ -9,13 +9,16 @@ echo '<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
 <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
     <ul class="navbar-nav">';
 
-foreach ($views as $view) {
+
+
+
+foreach ($pages as $page) {
     echo '<li class="nav-item">
-            <a  class="nav-link" href="' . $view . '"> ' . $view . ' </a>
+            <a  class="nav-link" href="page?p='.$page->getId().'"> ' . $page->getTitle() . ' </a>
             </li>';
 }
 
-if ($_SESSION['admin']) {
+if ($_SESSION['admin'] && $_SESSION['logged_in']) {
     echo '<li class="nav-item"><a class="nav-link" href="admin">Manage pages</a> </li>';
 }
 

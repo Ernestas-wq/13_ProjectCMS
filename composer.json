@@ -12,7 +12,8 @@
   },
   "autoload": {
     "files": [
-      "src/models/Page.php"
+      "src/models/Page.php",
+      "src/models/User.php"
     ]
   }
 }
