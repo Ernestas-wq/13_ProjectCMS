@@ -9,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST" && isset($_POST['login']) && !empty($_
         if($user) {
             $username = $user[0]->getUsername();
             $password = $user[0]->getPassword();
-            print_r(md5($_POST['password']) === $p);
             if($password === md5($_POST['password'])) {
             $_SESSION['logged_in'] = true;
             $_SESSION['timeout'] = time();
