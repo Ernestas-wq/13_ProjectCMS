@@ -1,5 +1,7 @@
 <?php declare (strict_types = 1) ?>
+
 <?php
+
 class Helper
 {
 
@@ -14,5 +16,11 @@ class Helper
         $len = strlen($startString);
         return (substr($string, 0, $len) === $startString);
     }
+
+
+
+
+
+
 
 }

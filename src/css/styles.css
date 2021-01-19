@@ -19,7 +19,9 @@ button {
 .hidden {
   display: none;
 }
-
+h1 {
+  text-transform: capitalize;
+}
 .login {
   width: 50%;
 }

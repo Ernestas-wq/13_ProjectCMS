@@ -63,7 +63,7 @@ if ($_SESSION['logged_in'] && $_SESSION['admin']) {
         <th scope="col">Edit</th>
          </tr>';
 
-    // Representing pages
+    // Representing pages, defined at root index.php
     if ($pages) {
         echo '<tbody>';
 
