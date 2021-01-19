@@ -16,4 +16,4 @@ In this project I created a mini representation of it.
 - Make sure AMPPS is turned on.
 - You can find some test users in users.json.
 - Open the **root** directory via localhost.
-- Log in as an admin to test out the management or as a user.
+- Log in as an admin and that's it.
