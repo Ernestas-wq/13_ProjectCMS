@@ -14,8 +14,11 @@ if (Helper::startsWith($redirect_to, 'page')) {
     require __DIR__ . '/src/views/index.php';
     return;
 }
-elseif($redirect_to === 'login' || $redirect_to === 'logout'
-|| $redirect_to === '' || $redirect_to === '/' || $redirect_to === 'home') {
+elseif( $redirect_to === '' || $redirect_to === '/' || $redirect_to === 'home') {
+    require __DIR__ . '/src/views/index.php';
+    return;
+}
+elseif($redirect_to === 'login' || $redirect_to === 'logout') {
     require __DIR__ . '/src/views/login.php';
     return;
 }
