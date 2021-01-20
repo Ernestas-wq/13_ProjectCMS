@@ -14,7 +14,7 @@ if (Helper::startsWith($redirect_to, 'page')) {
     require __DIR__ . '/src/views/index.php';
     return;
 }
-elseif( $redirect_to === '' || $redirect_to === '/' || $redirect_to === 'home') {
+elseif($redirect_to === '' || $redirect_to === '/' || $redirect_to === 'home') {
     require __DIR__ . '/src/views/index.php';
     return;
 }
